@@ -1,0 +1,17 @@
+{
+  "name": "adventofcode2024",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.14.12",
+    "@wtflegal/dev-configs": "^0.0.9",
+    "prettier": "^3.3.3",
+    "tsx": "^4.19.1",
+    "typescript": "^5.5.4",
+    "vitest": "^2.1.0"
+  }
+}
