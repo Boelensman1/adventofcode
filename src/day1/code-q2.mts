@@ -13,8 +13,6 @@ const main = (input: string) => {
     }
   }
 
-  leftList.sort((a, b) => a - b)
-
   return leftList.reduce((acc, num1) => {
     const occuranceInRightList = occurancesInRightList[num1] ?? 0
     return acc + num1 * occuranceInRightList
