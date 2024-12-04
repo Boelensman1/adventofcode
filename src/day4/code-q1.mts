@@ -4,7 +4,7 @@ const main = (input: string) => {
   /* First split all possible ways the input can be read out into simple horizontal strings */
   const horLines = input.trim().split('\n')
 
-  const inputSize = horLines.length // should be a square
+  const inputSize = horLines.length // input should be a square
 
   const verLines = []
   for (let x = 0; x < inputSize; x += 1) {
