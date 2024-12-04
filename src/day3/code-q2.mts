@@ -1,9 +1,9 @@
 const main = (input: string) => {
   let total = 0
+  let mulIsEnabled = true
 
   const regex = /mul\((\d+),(\d+)\)|(?:don't|do)\(\)/g
   let match
-  let mulIsEnabled = true
   while ((match = regex.exec(input)) !== null) {
     const [fullMatch] = match
     const [, num1, num2] = match.map((m) => Number.parseInt(m, 10))
@@ -17,7 +17,7 @@ const main = (input: string) => {
         mulIsEnabled = false
         continue
       }
-      default:
+      default: // a mul(x,y) operation
         if (!mulIsEnabled) {
           continue
         }
