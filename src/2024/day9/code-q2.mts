@@ -40,13 +40,11 @@ const main = (input: string) => {
   let checksum = 0
   unMovedFiles.shift()! // skip the first file as it doesn't change the checksum
 
-  freeSpaces.reverse()
-
   // start moving files
   while (unMovedFiles.length > 0) {
     const file = unMovedFiles.pop()!
-    const freeSpaceIndex = freeSpaces.findLastIndex(
-      (fsp) => fsp.size >= file.size,
+    const freeSpaceIndex = freeSpaces.findIndex(
+      (fsp) => fsp.size >= file.size && fsp.id < file.id,
     )
     if (freeSpaceIndex !== -1) {
       const freeSpace = freeSpaces[freeSpaceIndex]
@@ -57,12 +55,6 @@ const main = (input: string) => {
         // no more free space in freeSpace, remove it
         freeSpaces.splice(freeSpaceIndex, 1)
       }
-    }
-
-    // remove all free spaces that are before this file
-    const SkippedFspIndex = freeSpaces.findIndex((fsp) => fsp.id >= file.id)
-    if (SkippedFspIndex !== -1) {
-      freeSpaces.splice(0, SkippedFspIndex + 1)
     }
 
     checksum += fileChecksum(file)
