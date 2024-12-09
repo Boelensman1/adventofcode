@@ -1,5 +1,3 @@
-import toInt from '../utils/toInt.js'
-
 interface SpaceOnDisk {
   startIndex: number
   size: number
@@ -21,7 +19,7 @@ const main = (input: string) => {
     .trim()
     .split('')
     .forEach((char, index) => {
-      const size = toInt(char)
+      const size = parseInt(char)
       if (index % 2 === 0) {
         const id = index / 2
         unMovedFiles.push({
