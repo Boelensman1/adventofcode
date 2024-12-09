@@ -1,16 +1,8 @@
+import getAllPairwiseCombinations from '../utils/getAllPairwiseCombinations.js'
+
 interface Antenna {
   x: number
   y: number
-}
-
-const getAllPairwiseCombinations = <T,>(arr: T[]): [T, T][] => {
-  const combinations = []
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = i + 1; j < arr.length; j++) {
-      combinations.push([arr[i], arr[j]] as [T, T])
-    }
-  }
-  return combinations
 }
 
 const main = (input: string) => {
