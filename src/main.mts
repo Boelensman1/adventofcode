@@ -19,6 +19,8 @@ if (!dayNumber || !questionNumber) {
 }
 
 const main = async () => {
+  const startTime = performance.now()
+
   let func: (input: string) => Promise<number>
   try {
     const dayModule = (await import(
@@ -32,7 +34,13 @@ const main = async () => {
   }
 
   const input = readFileSync(`src/day${dayNumber}/input.txt`, 'utf-8')
-  console.log(await func(input))
+  const result = await func(input)
+
+  const endTime = performance.now()
+  const executionTime = endTime - startTime
+
+  console.log(`Result: ${result}`)
+  console.log(`Execution time: ${executionTime.toFixed(2)}ms`)
 }
 
 void main()
