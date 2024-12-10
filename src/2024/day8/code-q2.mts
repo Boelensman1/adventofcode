@@ -1,4 +1,4 @@
-import getAllPairwiseCombinations from '../../utils/getAllPairwiseCombinations.js'
+import getAllPairwiseCombinations from '../../utils/getAllPairwiseCombinations.mjs'
 
 interface Antenna {
   x: number

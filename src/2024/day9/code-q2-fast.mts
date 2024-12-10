@@ -40,9 +40,8 @@ const main = (input: string) => {
     .forEach((char, index) => {
       const size = parseInt(char)
       if (index % 2 === 0) {
-        const id = index / 2
         unMovedFiles.push({
-          id,
+          id: index / 2,
           startIndex: sizeSoFar,
           size,
         })
@@ -55,12 +54,9 @@ const main = (input: string) => {
       sizeSoFar += size
     })
 
+  // calculate output
   let checksum = 0
-  unMovedFiles.shift()! // skip the first file as it doesn't change the checksum
-
   const memo = Array<number>(10).fill(0)
-
-  // start moving files
   while (unMovedFiles.length > 0) {
     const file = unMovedFiles.pop()!
     const freeSpaceIndex =
