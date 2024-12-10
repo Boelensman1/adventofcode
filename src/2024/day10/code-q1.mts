@@ -11,7 +11,7 @@ const main = (input: string) => {
   const inputHeight = inputArr.length
   const inputWidth = inputArr[0].length
 
-  const getNodeId = (x: number, y: number) => y * inputWidth + x + 1 // +1 because of source and sink nodes
+  const getNodeId = (x: number, y: number) => y * inputWidth + x + 1 // +1 because of sink node
 
   const sinkNodeId = 0
 
