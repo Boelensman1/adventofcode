@@ -29,18 +29,21 @@ if (!YEAR) {
   throw new Error('Year env is malformed, input it like YEAR=2024')
 }
 
+const FAST = process.env.FAST === '1'
+const fastStr = FAST ? '-fast' : ''
+
 const main = async () => {
   const startTime = performance.now()
 
   let func: (input: string) => Promise<number>
   try {
     const dayModule = (await import(
-      `./${YEAR}/day${dayNumber}/code-q${questionNumber}.mjs`
+      `./${YEAR}/day${dayNumber}/code-q${questionNumber}${fastStr}.mjs`
     )) as DayModule
     func = dayModule.default
   } catch (error) {
     throw new Error(
-      `Function for day ${PUZZLE} and year ${YEAR} not found: ${error instanceof Error ? error.message : String(error)}`,
+      `Function for day ${PUZZLE} and year ${YEAR} ${FAST ? '(FAST)' : ''} not found: ${error instanceof Error ? error.message : String(error)}`,
     )
   }
 
