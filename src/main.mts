@@ -32,6 +32,10 @@ if (!YEAR) {
 const FAST = process.env.FAST === '1'
 const fastStr = FAST ? '-fast' : ''
 
+const INPUTNR = process.env.INPUTNR ?? '0'
+const inputNumber = parseInt(INPUTNR, 10)
+const inputNrStr = inputNumber ? String(inputNumber) : ''
+
 const main = async () => {
   const startTime = performance.now()
 
@@ -47,7 +51,17 @@ const main = async () => {
     )
   }
 
-  const input = readFileSync(`src/${YEAR}/day${dayNumber}/input.txt`, 'utf-8')
+  let input: string
+  try {
+    input = readFileSync(
+      `src/${YEAR}/day${dayNumber}/input${inputNrStr}.txt`,
+      'utf-8',
+    )
+  } catch (error) {
+    throw new Error(
+      `Input for day ${PUZZLE} and year ${YEAR} ${inputNumber ? `(number ${inputNumber})` : ''} not found: ${error instanceof Error ? error.message : String(error)}`,
+    )
+  }
   const result = await func(input)
 
   const endTime = performance.now()
