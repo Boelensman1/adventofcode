@@ -11,6 +11,7 @@ if (!PUZZLE) {
 }
 
 const [dayNumber, questionNumber] = PUZZLE.split('-').map((p) => parseInt(p))
+const dayStr = String(dayNumber).padStart(2, '0')
 
 if (!dayNumber || !questionNumber) {
   throw new Error('Puzzle env is malformed, input it like PUZZLE=1-1')
@@ -42,7 +43,7 @@ const main = async () => {
   let func: (input: string) => Promise<number>
   try {
     const dayModule = (await import(
-      `./${YEAR}/day${dayNumber}/code-q${questionNumber}${fastStr}.mjs`
+      `./${YEAR}/day${dayStr}/code-q${questionNumber}${fastStr}.mjs`
     )) as DayModule
     func = dayModule.default
   } catch (error) {
@@ -54,7 +55,7 @@ const main = async () => {
   let input: string
   try {
     input = readFileSync(
-      `src/${YEAR}/day${dayNumber}/input${inputNrStr}.txt`,
+      `src/${YEAR}/day${dayStr}/input${inputNrStr}.txt`,
       'utf-8',
     )
   } catch (error) {
