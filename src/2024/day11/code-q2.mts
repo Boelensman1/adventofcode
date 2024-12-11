@@ -27,9 +27,7 @@ const blinkAtStone = (stone: number, times: number): number => {
       memo[times - 1].set(rightStone, rightResult)
     }
 
-    const totalResult = leftResult + rightResult
-
-    return totalResult
+    return leftResult + rightResult
   }
 
   return blinkAtStone(stone * 2024, times - 1)
