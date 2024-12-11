@@ -38,8 +38,6 @@ const inputNumber = parseInt(INPUTNR, 10)
 const inputNrStr = inputNumber ? String(inputNumber) : ''
 
 const main = async () => {
-  const startTime = performance.now()
-
   let func: (input: string) => Promise<number>
   try {
     const dayModule = (await import(
@@ -63,8 +61,8 @@ const main = async () => {
       `Input for day ${PUZZLE} and year ${YEAR} ${inputNumber ? `(number ${inputNumber})` : ''} not found: ${error instanceof Error ? error.message : String(error)}`,
     )
   }
+  const startTime = performance.now()
   const result = await func(input)
-
   const endTime = performance.now()
   const executionTime = endTime - startTime
 
