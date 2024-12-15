@@ -3,7 +3,7 @@ import { describe, test, expect } from 'vitest'
 import funcQ1 from './code-q1.mjs'
 import funcQ2 from './code-q2.mjs'
 
-describe('Day 11', () => {
+describe('Day 12', () => {
   test('Question 1 (ex1)', () => {
     const input = `
 AAAA

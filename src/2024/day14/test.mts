@@ -2,7 +2,7 @@ import { describe, test, expect } from 'vitest'
 
 import funcQ1 from './code-q1.mjs'
 
-describe('Day 11', () => {
+describe('Day 14', () => {
   test('Question 1', () => {
     const input = `
 p=0,4 v=3,-3
