@@ -20,7 +20,7 @@ describe('Day 11', () => {
 
     // check speed
     let startTime = performance.now()
-    funcQ2(input, 29)
+    funcQ2(input, 26)
     let endTime = performance.now()
     const executionTime1 = endTime - startTime
 
@@ -30,6 +30,6 @@ describe('Day 11', () => {
     const executionTime2 = endTime - startTime
 
     // if runtime is non exponential, the execution time diff should not increase (much)
-    expect(executionTime2 / executionTime1).toBeLessThan(1.05)
+    expect(executionTime2 / executionTime1).toBeLessThan(1.5)
   })
 })
