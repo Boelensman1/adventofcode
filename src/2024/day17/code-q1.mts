@@ -59,7 +59,7 @@ const runInstruction = (
       break
     case 2:
       // The bst instruction (opcode 2) calculates the value of its combo operand modulo 8 (thereby keeping only its lowest 3 bits), then writes that value to the B register.
-      registers.B = comboOperand % 8n
+      registers.B = comboOperand & 7n
       break
     case 3:
       // The jnz instruction (opcode 3) does nothing if the A register is 0. However, if the A register is not zero, it jumps by setting the instruction pointer to the value of its literal operand; if this instruction jumps, the instruction pointer is not increased by 2 after this instruction.
@@ -73,7 +73,7 @@ const runInstruction = (
       break
     case 5:
       // The out instruction (opcode 5) calculates the value of its combo operand modulo 8, then outputs that value. (If a program outputs multiple values, they are separated by commas.)
-      out.push(Number(comboOperand % 8n))
+      out.push(Number(comboOperand & 7n))
       break
     case 6: {
       // The bdv instruction (opcode 6) works exactly like the adv instruction except that the result is stored in the B register. (The numerator is still read from the A register.)
