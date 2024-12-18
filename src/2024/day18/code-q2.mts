@@ -127,7 +127,7 @@ const calculateResult = (
   return Infinity
 }
 
-const main = (input: string, maxX = 70, maxY = 70) => {
+const main = (input: string) => {
   const objects: Wall[] = []
 
   input
@@ -137,6 +137,9 @@ const main = (input: string, maxX = 70, maxY = 70) => {
       const [x, y] = line.split(',').map((c) => parseInt(c, 10))
       objects.push(new Wall(x, y, objects.length))
     })
+
+  const maxX = objects.reduce((acc, obj) => (acc < obj.x ? obj.x : acc), 0)
+  const maxY = objects.reduce((acc, obj) => (acc < obj.y ? obj.y : acc), 0)
 
   const grid: Grid = new Array(maxY + 1)
     .fill([])
