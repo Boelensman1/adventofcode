@@ -54,7 +54,7 @@ const getNeighborsUnbound = (
 const coordToNum = (coord: Coordinate) => coord[0] * 1000 + coord[1]
 
 // A*, from wikipedia
-const calculateResult = (
+const calculateCanReachEnd = (
   grid: Grid,
   maxX: number,
   maxY: number,
@@ -72,10 +72,6 @@ const calculateResult = (
   const openQueue = new PriorityQueue<Coordinate>((a, b) => h(a) - h(b))
   openQueue.push(start)
   const openSet = new Set<number>([coordToNum(start)])
-
-  // For node n, cameFrom[n] is the node immediately preceding it on the cheapest path from the start
-  // to n currently known.
-  const cameFrom = new Map()
 
   // For node n, gScore[n] is the currently known cost of the cheapest path from start to n.
   const gScore = new Map<number, number>() // map with default value of Infinity
@@ -113,7 +109,6 @@ const calculateResult = (
 
       if (tentative_gScore < gScore.get(neighborN)!) {
         // This path to neighbor is better than any previous one. Record it!
-        cameFrom.set(neighbor, current)
         gScore.set(neighborN, tentative_gScore)
         fScore.set(neighborN, tentative_gScore + h(neighbor))
         if (!openSet.has(neighborN)) {
@@ -125,7 +120,7 @@ const calculateResult = (
   }
 
   // Open set is empty but goal was never reached
-  return Infinity
+  return false
 }
 
 const main = (input: string) => {
@@ -138,7 +133,6 @@ const main = (input: string) => {
       const [x, y] = line.split(',').map((c) => parseInt(c, 10))
       objects.push(new Wall(x, y, objects.length))
     })
-
 
   const maxX = objects.reduce((acc, obj) => (acc < obj.x ? obj.x : acc), 0)
   const maxY = objects.reduce((acc, obj) => (acc < obj.y ? obj.y : acc), 0)
@@ -157,9 +151,9 @@ const main = (input: string) => {
 
   while (left <= right) {
     const mid = Math.floor((left + right) / 2)
-    const score = calculateResult(grid, maxX, maxY, mid)
+    const canReachEnd = calculateCanReachEnd(grid, maxX, maxY, mid)
 
-    if (score === Infinity) {
+    if (!canReachEnd) {
       // Path is blocked, try lower number of walls
       result = objects[mid].coordString
       right = mid - 1
