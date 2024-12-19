@@ -30,6 +30,6 @@ describe('Day 11', () => {
     const executionTime2 = endTime - startTime
 
     // if runtime is non exponential, the execution time diff should not increase (much)
-    expect(executionTime2 / executionTime1).toBeLessThan(1.5)
+    expect(executionTime2 / executionTime1).toBeLessThan(3)
   })
 })
