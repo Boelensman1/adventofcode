@@ -62,6 +62,6 @@ describe('Day 18', () => {
 1,6
 2,0
 `
-    expect(funcQ2(input, 6, 6)).toEqual('6,1')
+    expect(funcQ2(input)).toEqual('6,1')
   })
 })
